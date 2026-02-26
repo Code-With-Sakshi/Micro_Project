@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Upload Certificate</title>
+    <link rel="stylesheet" href="css/user_certificate.css">
+</head>
+<body>
+
+<div class="container">
+    <form id="certificateForm" enctype="multipart/form-data">
+        <h2>Upload Certificate</h2>
+
+        <input type="text" id="certificate_name" placeholder="Certificate Name" required>
+        <input type="text" id="certificate_id" placeholder="Certificate ID" required>
+        <input type="date" id="issue_date" required>
+        <input type="file" id="certificate_file" accept=".pdf,.jpg,.png" required>
+
+        <button type="submit">Upload</button>
+
+        <p id="message"></p>
+
+        <button type="button" class="logout-btn" onclick="logout()">Logout</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("certificateForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append("certificate_name", document.getElementById("certificate_name").value);
+    formData.append("certificate_id", document.getElementById("certificate_id").value);
+    formData.append("issue_date", document.getElementById("issue_date").value);
+    formData.append("certificate_file", document.getElementById("certificate_file").files[0]);
+
+    fetch("http://127.0.0.1:5000/api/user/certificate/upload", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        const message = document.getElementById("message");
+
+        if(data.status === "success"){
+            message.innerHTML = 
+                "<span style='color:green'>" + data.msg + 
+                "<br><small>Hash: " + data.hash + "</small></span>";
+        } else {
+            message.innerHTML = "<span style='color:red'>" + data.msg + "</span>";
+        }
+    })
+    .catch(() => {
+        const message = document.getElementById("message");
+        message.innerHTML = "<span style='color:red'>Server error!</span>";
+    });
+});
+
+function logout(){
+    window.location.href = "user_login.html";
+}
+</script>
+
+</body>
+</html>

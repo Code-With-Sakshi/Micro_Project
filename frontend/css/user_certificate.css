@@ -1,0 +1,94 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Background */
+body {
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card */
+form {
+    background: #ffffff;
+    padding: 40px;
+    width: 420px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Heading */
+form h2 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+input[type="file"] {
+    border: none;
+}
+
+input:focus {
+    border-color: #36b9cc;
+    outline: none;
+    box-shadow: 0 0 8px rgba(54,185,204,0.4);
+}
+
+/* Upload Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #36b9cc;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background: #2c9faf;
+}
+
+/* Logout Button */
+.logout-btn {
+    background: #858796;
+}
+
+.logout-btn:hover {
+    background: #6c757d;
+}
+
+/* Message */
+#message {
+    margin-top: 15px;
+    font-weight: 500;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload Certificate</title>
+<link rel="stylesheet" href="css/admin_certificate.css">
+</head>
+<body>
+
+<div class="container">
+
+<h2>Upload Certificate</h2>
+
+<form id="certificateForm" enctype="multipart/form-data">
+
+<input type="text" id="recipient_name" placeholder="Recipient Name" required>
+
+<input type="text" id="certificate_id" placeholder="Certificate ID" required>
+
+<input type="text" id="issuer_name" placeholder="Issuer Name" required>
+
+<input type="text" id="course" placeholder="Course" required>
+
+<input type="date" id="issue_date" required>
+
+<input type="file" id="certificate_file" required>
+
+<button type="submit">Upload Certificate</button>
+
+</form>
+
+<p id="message"></p>
+
+<br><br>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+<script>
+
+document.getElementById("certificateForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let formData = new FormData();
+
+    formData.append("recipient_name", document.getElementById("recipient_name").value);
+    formData.append("certificate_id", document.getElementById("certificate_id").value);
+    formData.append("issuer_name", document.getElementById("issuer_name").value);
+    formData.append("course", document.getElementById("course").value);
+    formData.append("issue_date", document.getElementById("issue_date").value);
+    formData.append("certificate_file", document.getElementById("certificate_file").files[0]);
+
+    fetch("http://127.0.0.1:5000/api/admin/certificate/upload", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === "success"){
+            document.getElementById("message").innerHTML =
+                "Uploaded Successfully!<br>Hash: " + data.hash;
+            document.getElementById("message").style.color = "green";
+        } else {
+            document.getElementById("message").innerHTML = data.msg;
+            document.getElementById("message").style.color = "red";
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById("message").innerHTML = "Upload failed!";
+        document.getElementById("message").style.color = "red";
+    });
+});
+
+function logout(){
+    window.location.href = "admin_login.html";
+}
+
+</script>
+
+</body>
+</html>

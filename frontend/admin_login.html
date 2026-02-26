@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Login</title>
+<link rel="stylesheet" href="css/admin_login.css">
+</head>
+<body>
+
+<div class="container">
+
+<h2>Admin Login</h2>
+
+<form>
+
+<input type="email" placeholder="Enter Email" required>
+
+<input type="password" placeholder="Enter Password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<br>
+
+<a href="admin_signup.html">Don't have account? Signup</a>
+
+</div>
+
+<script>
+document.querySelector("form").addEventListener("submit", function(e)
+{
+    e.preventDefault();
+
+    // normally backend login happens here
+
+    alert("Login successful");
+
+    // redirect to certificate upload page
+    window.location.href = "admin_certificate.html";
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Signup</title>
+    <link rel="stylesheet" href="css/admin_signup.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Admin Registration</h2>
+
+    <form id="signupForm">
+
+        <input type="text" id="org_name" placeholder="Organization Name" required>
+
+        <input type="text" id="org_type" placeholder="Organization Type" required>
+
+        <input type="email" id="official_email" placeholder="Official Email" required>
+
+        <input type="text" id="contact_number" placeholder="Contact Number" required>
+
+        <input type="password" id="password" placeholder="Password" required>
+
+        <input type="text" id="address" placeholder="Address" required>
+
+        <button type="submit">Signup</button>
+
+    </form>
+
+    <p id="message"></p>
+
+    <br>
+
+    <a href="admin_login.html">Already have account? Login</a>
+
+</div>
+
+<script>
+
+document.getElementById("signupForm").addEventListener("submit", function(e)
+{
+    e.preventDefault();
+
+    fetch("http://127.0.0.1:5000/api/admin/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            org_name: document.getElementById("org_name").value,
+            org_type: document.getElementById("org_type").value,
+            official_email: document.getElementById("official_email").value,
+            contact_number: document.getElementById("contact_number").value,
+            password: document.getElementById("password").value,
+            address: document.getElementById("address").value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        if(data.status === "success")
+        {
+            document.getElementById("message").innerHTML = "Signup Successful!";
+            document.getElementById("message").style.color = "green";
+
+            setTimeout(() => {
+                window.location.href = "admin_login.html";
+            }, 1500);
+        }
+        else
+        {
+            document.getElementById("message").innerHTML = data.msg;
+            document.getElementById("message").style.color = "red";
+        }
+
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        document.getElementById("message").innerHTML = "Backend not connected!";
+        document.getElementById("message").style.color = "red";
+    });
+
+});
+
+</script>
+
+</body>
+</html>

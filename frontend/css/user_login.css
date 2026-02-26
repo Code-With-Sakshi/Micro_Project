@@ -1,0 +1,96 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Background */
+body {
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card */
+form {
+    background: white;
+    padding: 40px;
+    width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Heading */
+form h2 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+input:focus {
+    border-color: #e74a3b;
+    outline: none;
+    box-shadow: 0 0 8px rgba(231,74,59,0.4);
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #e74a3b;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #c0392b;
+}
+
+/* Extra text */
+.extra {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.extra a {
+    color: #e74a3b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.extra a:hover {
+    text-decoration: underline;
+}
+
+/* Message */
+#message {
+    margin-top: 15px;
+    font-weight: 500;
+}
