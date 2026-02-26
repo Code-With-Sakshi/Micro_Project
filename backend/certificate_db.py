@@ -5,6 +5,6 @@ def get_certificate_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="sakshi",
+        password="Add_Password",
         database="certificate_db"
     )
